@@ -1,6 +1,6 @@
 ---
 name: no-guessing
-description: Use before writing code that calls a library function, CLI flag, config key, environment variable, API endpoint, or file path you have not seen in this session. Requires confirming it exists (in the repo, the installed package, --help, or official docs) instead of writing it from memory. Prevents hallucinated APIs, made-up flags, and wrong parameter names.
+description: MANDATORY before any edit that adds a call, argument, or flag for a library or tool, and whenever a task says a library "supports" something. Load it first, then confirm the feature exists in the installed version (repo, package source, --help); docs and task text describe other versions. Never edit a pinned or vendored dependency to add what is missing.
 ---
 
 # No guessing
@@ -38,7 +38,7 @@ If it fails, check the SDK changelog for the batch method name.
 
 The installed version wins.
 
-- **Never edit a dependency** to add what the docs promised: vendored or pinned packages, `node_modules`, `site-packages`, `vendor/`, `third_party/`. The next install erases the change, and the code then breaks.
+- **Never edit a dependency** to add what the docs promised: anything in `node_modules`, `site-packages`, `vendor/`, `third_party/`, or a package pinned in `requirements.txt`, `package.json`, `go.mod` and the like, even when its source sits in the repo. It is not your code. The next install erases the change, and the project then breaks.
 - Solve it in the project's own code, or say the upgrade it needs:
 
 ```

@@ -1,6 +1,6 @@
 ---
 name: repro-first
-description: Use when fixing any bug, error, crash, traceback, failing test, or "X doesn't work" report. Requires reproducing the failure and showing it before changing code, finding the root cause, then showing the same reproduction passes after the fix. Prevents blind fixes, symptom patches, and "fixed" claims for bugs that were never observed.
+description: MANDATORY first step for any bug report, error message, crash, traceback, or failing test. Load it before editing code to fix a bug. Reproduce the failure first and show it; if it does not fail, change nothing and say "Could not reproduce". After the fix, show the same reproduction passing.
 ---
 
 # Repro first
@@ -14,6 +14,7 @@ A fix for a bug you never saw fail is a guess.
 3. **Fix** the cause, not the symptom. No `try/except: pass`, no special case for the one input from the report, unless that really is the bug.
 4. **Re-run the same reproduction.** Show it passing now.
 5. **Check the neighbors.** Run the tests around the code you touched, so the fix did not break a sibling case.
+   If an existing test now fails, your fix is wrong, or the report conflicts with that test. Do not edit the test to match. Find a fix that passes both, or stop and ask which behavior is right.
 
 ## Report format
 

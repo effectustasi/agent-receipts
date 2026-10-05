@@ -1,6 +1,6 @@
 ---
 name: prove-it
-description: Use before the final message of every coding task, and before telling the user anything is done, fixed, working, passing, or deployed. Requires fresh evidence from this session (command output, test results, a screenshot of the running app) that would fail if the change were wrong, and an explicit "not verified" when there is none. Edited tests and happy-path runs do not count. Triggers before writing "done", "fixed", "works", "should work", "all tests pass".
+description: MANDATORY before your final message on any coding task (bug fix, feature, refactor). Load it before you write done, fixed, works, or tests pass. Defines what counts as proof: fresh command output from this session that would fail if the change were wrong. Edited tests and happy-path runs do not count; say "not verified" when you have no proof.
 ---
 
 # Prove it
