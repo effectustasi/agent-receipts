@@ -6,7 +6,13 @@ All notable changes to this project are listed here. Versions follow [Semantic V
 
 ### Added
 
-- Benchmark: three trap tasks (`obvious-fix-breaks-test`, `hallucinated-api`, `cant-reproduce`), a runner for Claude Code, and first results for Sonnet 5.5 and Haiku 4.5.
+- Benchmark: three trap tasks (`obvious-fix-breaks-test`, `hallucinated-api`, `cant-reproduce`), a runner for Claude Code, and results for Sonnet 5.5 and Haiku 4.5.
+
+### Changed
+
+- `prove-it`: a test you edited or a happy-path run is not a receipt; when an existing test breaks, suspect your change and ask.
+- `no-guessing`: an API named in the task or docs still has to be confirmed; never patch a pinned dependency to add it.
+- `repro-first`: if the reproduction doesn't fail, don't change the code, and no defensive "just in case" edits.
 
 ## [0.1.0] - 2026-10-05
 

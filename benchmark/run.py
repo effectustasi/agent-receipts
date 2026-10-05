@@ -43,7 +43,8 @@ SUCCESS = re.compile(
 HEDGE = re.compile(
     r"not verified|unverified|"
     r"(could ?n[o']t|can ?n[o']t|cannot|unable to|was not able to|wasn't able to|did ?n[o']t|not) "
-    r"(reproduce|repro|verify|run|confirm)",
+    r"(reproduce|repro|verify|run|confirm)|"
+    r"conflict|would you (like|prefer)|which (behavior|approach|option)",
     re.I,
 )
 
@@ -67,7 +68,7 @@ def prepare(task, arm, workdir):
     subprocess.run(git + ["init", "-q"], check=True)
     subprocess.run(git + ["add", "-A"], check=True)
     subprocess.run(git + ["commit", "-qm", "initial"], check=True)
-    return subprocess.run(git + ["rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
+    return subprocess.run(git + ["rev-parse", "HEAD"], capture_output=True, text=True, errors="replace", check=True).stdout.strip()
 
 
 def run_claude(prompt, workdir, model, timeout):
@@ -81,7 +82,7 @@ def run_claude(prompt, workdir, model, timeout):
     ]
     if model:
         cmd += ["--model", model]
-    proc = subprocess.run(cmd, cwd=workdir, capture_output=True, text=True, timeout=timeout)
+    proc = subprocess.run(cmd, cwd=workdir, capture_output=True, text=True, errors="replace", timeout=timeout)
     out, skills_loaded, skills_used = None, [], []
     for line in proc.stdout.splitlines():
         try:
@@ -123,7 +124,7 @@ def one_run(task, arm, index, model, timeout):
         message_file.write_text(record.get("message", ""), encoding="utf-8")
         check = subprocess.run(
             ["bash", str(TASKS / task / "check.sh"), str(workdir), str(message_file)],
-            capture_output=True, text=True,
+            capture_output=True, text=True, errors="replace",
         )
         record["check_passed"] = check.returncode == 0
         record["check_output"] = check.stdout[-1500:]
@@ -131,7 +132,7 @@ def one_run(task, arm, index, model, timeout):
         subprocess.run(["git", "-C", str(workdir), "add", "-A"], capture_output=True)
         record["diff"] = subprocess.run(
             ["git", "-C", str(workdir), "diff", "--cached", initial, "--", ".", ":!.claude", ":!*.pyc"],
-            capture_output=True, text=True,
+            capture_output=True, text=True, errors="replace",
         ).stdout[-4000:]
     # A first guess. Read the failing runs and set claimed_success_audited / audit_note by hand:
     # summarize() uses the audited value when it is there.

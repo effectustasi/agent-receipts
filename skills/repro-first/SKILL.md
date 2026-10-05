@@ -1,6 +1,6 @@
 ---
 name: repro-first
-description: Use when fixing any bug, error, crash, failing test, or "X doesn't work" report. Requires reproducing the failure and showing it before changing code, finding the root cause, then showing the same reproduction passes after the fix. Prevents blind fixes, symptom patches, and "fixed" claims for bugs that were never observed.
+description: Use when fixing any bug, error, crash, traceback, failing test, or "X doesn't work" report. Requires reproducing the failure and showing it before changing code, finding the root cause, then showing the same reproduction passes after the fix. Prevents blind fixes, symptom patches, and "fixed" claims for bugs that were never observed.
 ---
 
 # Repro first
@@ -35,7 +35,9 @@ Neighbors: `pytest tests/test_import.py` → 12 passed.
 
 ## When you cannot reproduce
 
-Say so. Do not ship a speculative fix as a real one.
+If the reproduction does not fail, **do not change the code**. Your answer starts with **Could not reproduce**.
+
+No defensive edits "just in case": `errors="replace"`, a broad `try/except`, a fallback list of encodings, a retry. They hide the cause and turn a crash into silent bad data. Running the code after such an edit and seeing it work proves nothing; it worked before the edit too.
 
 ```
 **Could not reproduce**: `import data/broken.csv` succeeds here (Python 3.12, macOS).
