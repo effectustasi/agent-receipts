@@ -75,7 +75,7 @@ Agent'a özel kurulum rehberleri katkıya açık: [`agent-support`](https://gith
 
 Aynı görevler `receipts` ile ve onsuz çalıştırılıyor; agent'ın gerçek olmayan bir başarıyı ne sıklıkla iddia ettiği ölçülüyor. Her çalıştırmayı agent değil, bir script kontrol ediyor.
 
-Şimdiye kadarki sonuçlar (Claude Code, 210 çalıştırma): Sonnet 5.5 hiçbir kurulumda yanlış başarı iddia etmedi. Haiku 4.5 receipts olmadan 30 çalıştırmanın 13'ünde etti ve receipts bunu henüz güvenilir şekilde azaltmıyor: Haiku skill'leri kendiliğinden nadiren açıyor. Skill'ler `CLAUDE.md`'deyken testleri geçsin diye değiştirmeyi bıraktı ve bunun yerine sordu.
+Şimdiye kadarki sonuçlar (Claude Code, 300 çalıştırma): Sonnet 5.5 hiçbir kurulumda yanlış başarı iddia etmedi. Haiku 4.5 receipts olmadan 30 çalıştırmanın 13'ünde etti ve receipts bu toplamı henüz düşürmüyor. Ama davranışı değiştiriyor: bir düzeltme mevcut bir testi bozduğunda Haiku artık testi değiştirmek yerine durup soruyor (o görevde 10'da 0 yanlış başarı). Kilitli bir bağımlılığı ise hâlâ her seferinde yamalıyor.
 Tablolar, kayıtlar ve nasıl çalıştırılacağı: [benchmark/](benchmark/README.md). Yeni görevlere açığız, [`benchmark`](https://github.com/effectustasi/agent-receipts/labels/benchmark) etiketine bak.
 
 ## Katkı

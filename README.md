@@ -75,7 +75,7 @@ Per-agent guides are welcome: pick your agent from the [`agent-support`](https:/
 
 The same tasks, run with and without `receipts`, measuring how often the agent claims success that isn't real. Every run is checked by a script, not by the agent.
 
-Results so far (Claude Code, 210 runs): Sonnet 5.5 made no false claims in any setup. Haiku 4.5 made them in 13 of 30 runs without receipts, and receipts doesn't reliably reduce that yet: Haiku rarely opens a skill on its own. With the skills in `CLAUDE.md`, it did stop editing tests to make them pass, and asked instead.
+Results so far (Claude Code, 300 runs): Sonnet 5.5 made no false claims in any setup. Haiku 4.5 made them in 13 of 30 runs without receipts, and receipts doesn't lower that total yet. It does change behavior: when a fix breaks an existing test, Haiku now stops and asks instead of editing the test (0 of 10 false successes on that task). It still patches a pinned dependency every time.
 Full tables, transcripts, and how to run it: [benchmark/](benchmark/README.md). New tasks are welcome, see the [`benchmark`](https://github.com/effectustasi/agent-receipts/labels/benchmark) label.
 
 ## Contributing
