@@ -73,8 +73,10 @@ Agent'a özel kurulum rehberleri katkıya açık: [`agent-support`](https://gith
 
 ## Benchmark
 
-Yakında: aynı görev seti receipts ile ve receipts olmadan çalıştırılacak, agent'ın gerçek olmayan bir başarıyı ne sıklıkla iddia ettiği ölçülecek.
-Yardım etmek ister misin? `benchmark` etiketli issue'lara bak.
+Aynı görevler `receipts` ile ve onsuz çalıştırılıyor; agent'ın gerçek olmayan bir başarıyı ne sıklıkla iddia ettiği ölçülüyor. Her çalıştırmayı agent değil, bir script kontrol ediyor.
+
+İlk sonuçlar (Claude Code, 90 çalıştırma): Sonnet 5.5 hiçbir kurulumda yanlış başarı iddia etmedi. Haiku 4.5 yaklaşık her 3 çalıştırmanın 2'sinde etti ve `receipts` bunu henüz azaltmadı: Haiku skill'leri kendiliğinden hiç açmadı, metin her zaman bağlamdayken de kontrol etmeden sadece makbuz formatını kopyaladı.
+Tablolar, kayıtlar ve nasıl çalıştırılacağı: [benchmark/](benchmark/README.md). Yeni görevlere açığız, [`benchmark`](https://github.com/effectustasi/agent-receipts/labels/benchmark) etiketine bak.
 
 ## Katkı
 

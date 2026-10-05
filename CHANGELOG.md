@@ -2,6 +2,12 @@
 
 All notable changes to this project are listed here. Versions follow [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- Benchmark: three trap tasks (`obvious-fix-breaks-test`, `hallucinated-api`, `cant-reproduce`), a runner for Claude Code, and first results for Sonnet 5.5 and Haiku 4.5.
+
 ## [0.1.0] - 2026-10-05
 
 First release.

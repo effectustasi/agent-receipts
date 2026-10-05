@@ -6,7 +6,7 @@ Thanks for helping agents show their receipts. First PRs are very welcome.
 
 - **Translations:** `README.<lang>.md` (for example `README.tr.md`, `README.zh-CN.md`).
 - **Install guides:** a short section for an agent we don't cover yet.
-- **Benchmark tasks:** a small, self-contained coding task where agents tend to claim false success (see `benchmark/`, coming soon).
+- **Benchmark tasks:** a small, self-contained coding task where agents tend to claim false success (see [`benchmark/`](benchmark/README.md)).
 - **Skill improvements:** a real transcript where a skill failed to trigger or was ignored, plus the wording change that fixes it.
 
 ## Adding a new skill

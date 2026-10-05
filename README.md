@@ -73,8 +73,10 @@ Per-agent guides are welcome: pick your agent from the [`agent-support`](https:/
 
 ## Benchmark
 
-Coming soon: the same task set run with and without `receipts`, measuring how often the agent claims success that isn't real.
-Want to help build it? Check the issues labeled `benchmark`.
+The same tasks, run with and without `receipts`, measuring how often the agent claims success that isn't real. Every run is checked by a script, not by the agent.
+
+First results (Claude Code, 90 runs): Sonnet 5.5 made no false claims in any setup. Haiku 4.5 made them in about 2 of 3 runs, and `receipts` did not reduce that yet: Haiku never opened a skill on its own, and with the text always in context it copied the receipt format without the checking.
+Full tables, transcripts, and how to run it: [benchmark/](benchmark/README.md). New tasks are welcome, see the [`benchmark`](https://github.com/effectustasi/agent-receipts/labels/benchmark) label.
 
 ## Contributing
 
