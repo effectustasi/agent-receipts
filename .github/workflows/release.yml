@@ -1,8 +1,17 @@
 name: Release
 
+# Two ways to release:
+# - push a vX.Y.Z tag, or
+# - run this workflow from the Actions tab with a version (e.g. 0.1.0);
+#   it tags the selected branch and publishes the release.
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release, without the v (e.g. 0.1.0)"
+        required: true
 
 permissions:
   contents: write
@@ -12,9 +21,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Resolve tag
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "TAG=v${INPUT_VERSION#v}" >> "$GITHUB_ENV"
+          else
+            echo "TAG=$GITHUB_REF_NAME" >> "$GITHUB_ENV"
+          fi
       - name: Extract notes from CHANGELOG.md
         run: |
-          version="${GITHUB_REF_NAME#v}"
+          version="${TAG#v}"
           awk -v v="$version" '
             $0 ~ "^## \\[" v "\\]" { found = 1; next }
             found && /^## \[/ { exit }
@@ -29,4 +47,9 @@ jobs:
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file notes.md --verify-tag
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            gh release create "$TAG" --title "$TAG" --notes-file notes.md --target "$GITHUB_SHA"
+          else
+            gh release create "$TAG" --title "$TAG" --notes-file notes.md --verify-tag
+          fi
