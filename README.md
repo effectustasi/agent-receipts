@@ -1,5 +1,11 @@
 # receipts 🧾
 
+[![Validate skills](https://github.com/effectustasi/agent-receipts/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/effectustasi/agent-receipts/actions/workflows/validate-skills.yml)
+[![Latest release](https://img.shields.io/github/v/release/effectustasi/agent-receipts)](https://github.com/effectustasi/agent-receipts/releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)](#install)
+[![GitHub stars](https://img.shields.io/github/stars/effectustasi/agent-receipts?style=social)](https://github.com/effectustasi/agent-receipts/stargazers)
+
 **English** · [Türkçe](README.tr.md) · *Your language? [Help translate](https://github.com/effectustasi/agent-receipts/labels/translation)*
 
 **Your coding agent says "Done ✅". It never ran the code.**
@@ -44,15 +50,12 @@ or, when it can't check:
 
 ### Codex CLI
 
-Codex CLI reads `AGENTS.md` before starting work. Add the receipt skills to an `AGENTS.md` in your project root:
+Codex CLI reads `AGENTS.md` before starting work. From your project root, append the receipt skills to it:
 
 ```bash
-git clone https://github.com/effectustasi/agent-receipts.git /tmp/agent-receipts
-cd /path/to/your/project
 for skill in prove-it no-guessing repro-first; do
-  cat "/tmp/agent-receipts/skills/$skill/SKILL.md" >> AGENTS.md
+  curl -fsSL "https://raw.githubusercontent.com/effectustasi/agent-receipts/main/skills/$skill/SKILL.md" >> AGENTS.md
 done
-rm -rf /tmp/agent-receipts
 ```
 
 To apply the skills to every project instead, append them to `~/.codex/AGENTS.md`. Start a new Codex run after changing the file, then ask it to summarize the active instructions:
