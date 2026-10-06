@@ -6,7 +6,7 @@
 [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)](#install)
 [![GitHub stars](https://img.shields.io/github/stars/effectustasi/agent-receipts?style=social)](https://github.com/effectustasi/agent-receipts/stargazers)
 
-**English** · [Türkçe](README.tr.md) · *Your language? [Help translate](https://github.com/effectustasi/agent-receipts/labels/translation)*
+**English** · [Türkçe](README.tr.md) · [Español](README.es.md) · *Your language? [Help translate](https://github.com/effectustasi/agent-receipts/labels/translation)*
 
 **Your coding agent says "Done ✅". It never ran the code.**
 
